@@ -2,7 +2,12 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
-app.use(express.static(path.join(__dirname, 'docs')));
+app.set('etag', false);
+
+app.use(express.static(path.join(__dirname, 'docs'), {
+    maxAge: 0,
+    etag: false
+}));
 
 // Define the port to run on
 app.set('port', 3000);
